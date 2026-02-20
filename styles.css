@@ -4,7 +4,7 @@ html {
   line-height: 22px;
   font-family: "Nunito", sans-serif;
   padding: 0px;
-  background-image: url(/images/backgrounds/critterblue.gif);
+  background-image: url(public/images/backgrounds/critterblue.gif);
   background-attachment: fixed;
   background-color: white;
 }
@@ -57,7 +57,7 @@ h1 {
   width: 800px;
   position: relative;
   padding: 10px;
-  background-image: url(/images/eyes.gif);
+  background-image: url(public/images/eyes.gif);
   background-size: auto;
   background-color: #F9F7F5;
 }
