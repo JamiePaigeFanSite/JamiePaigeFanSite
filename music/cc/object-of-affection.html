@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <script>
+(function() {
+  const pathname = window.location.pathname;
+  const basePath = pathname.includes('/JamiePedia/') ? '/JamiePedia' : '';
+  
+  if (basePath) {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('link[href^="/"], script[src^="/"], img[src^="/"], a[href^="/"]').forEach(el => {
+        if (el.href) el.href = basePath + el.href;
+        if (el.src) el.src = basePath + el.src;
+      });
+    });
+    const links = document.querySelectorAll('link[href^="/"], script[src^="/"]');
+    links.forEach(el => {
+      if (el.href) el.href = basePath + el.href;
+      if (el.src) el.src = basePath + el.src;
+    });
+  }
+})();
+</script>
+
     <meta charset="UTF-8">
     <title>JamiePedia! - Object of Affection</title>
     <meta name="title" content="JamiePedia! - Object of Affection">
@@ -81,8 +102,8 @@
             
             <!-- Navigation Buttons -->
 <div class="song-nav-buttons">
-  <a href="/music/cc/liaison.html" class="song-nav-link">← Previous</a>
-  <a href="/music/cc/clouddrop.html" class="song-nav-link">Next →</a>
+  <a href="javascript:void(0);" onclick="goToSong('/music/cc/liaison.html')" class="song-nav-link">← Previous</a>
+  <a href="javascript:void(0);" onclick="goToSong('/music/cc/clouddrop.html')" class="song-nav-link">Next →</a>
 </div>
             
             <!-- Album & Date -->
