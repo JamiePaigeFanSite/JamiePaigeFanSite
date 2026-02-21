@@ -94,6 +94,7 @@
   color: #ef8a85;
   border: 3px solid #ef8a85;
   border-bottom: 0px solid transparent;
+  font-weight: bold;
 }
 
 .song-content {
