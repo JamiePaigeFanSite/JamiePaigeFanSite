@@ -26,7 +26,7 @@ function switchAlbumArt(filename) {
   // Update cover artist based on selected album art
   const coverArtists = {
     'aa.png': 'RJ Lake',
-    'aed.png': '',
+    'aed.png': 'Valerie Halla',
     'aod.png': '',
     'as.png': '',
     'atm.jpg': '',
@@ -62,7 +62,7 @@ function switchAlbumArt(filename) {
     'gr.jpg': 'kalrot',
     'hc.jpg': '',
     'hc.jpg': '',
-    'hmt.jpg': '',
+    'hmt.jpg': 'Jun',
     'human.png': '',
     'iwticf.png': '',
     'jpjp3.png': '',
@@ -91,7 +91,7 @@ function switchAlbumArt(filename) {
     'ride.jpg': '',
     'rotjpa.jpg': '',
     'rr.jpeg': '',
-    'sd.png': '',
+    'sd.png': 'Cochet',
     'sf.png': '',
     'sfrr.jpg': '',
     'smot.png': '',

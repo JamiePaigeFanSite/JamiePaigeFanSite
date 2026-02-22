@@ -75,11 +75,21 @@
           
           <!-- Right View -->
           <div class="song-rightview">
+            <!-- Album Art Tabs -->
+            <div class="album-tabs-container">
+              <div class="album-tabs">
+                <button class="album-tab active" onclick="switchAlbumArt('hmt.jpg')">Single</button>
+                <button class="album-tab" onclick="switchAlbumArt('aed.png')">Album</button>
+              </div>
+            </div>
             <!-- Cover Art -->
             <div class="song-cover">
-              <img src="../../public/images/cover-art/hmt.jpg" alt="Autumn Every Day Album Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+              <img id="album-art-image" src="../../public/images/cover-art/hmt.jpg" alt="Hold Me Tightly Album Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
             </div>
-            
+            <!-- Cover Art Credit -->
+            <div class="cover-art-footer">
+              <div class="cover-art-credit">Cover art by: <span id="cover-artist-display">Jun</span></div>
+            </div>
             <!-- Navigation Buttons -->
 <div class="song-nav-buttons">
   <a href="javascript:void(0);" onclick="goToSong('/music/aed/autumn-every-day.html')" class="song-nav-link">← Previous</a>
