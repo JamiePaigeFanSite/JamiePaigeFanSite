@@ -11,7 +11,49 @@ function switchTab(tabName) {
   document.getElementById('content-' + tabName).classList.add('active');
   // Add active state to clicked tab
   event.target.classList.add('active');
+  
+  // Show/hide lyrics subtabs based on selected tab
+  const lyricsSubtabsContainer = document.getElementById('lyrics-subtabs-container');
+  const songLength = document.querySelector('.song-length');
+  if (lyricsSubtabsContainer) {
+    if (tabName === 'lyrics') {
+      lyricsSubtabsContainer.classList.add('active');
+      if (songLength) songLength.classList.add('hide-border');
+    } else {
+      lyricsSubtabsContainer.classList.remove('active');
+      if (songLength) songLength.classList.remove('hide-border');
+    }
+  }
 }
+
+function switchLyricsTab(lyricsType) {
+  // Hide all lyrics content
+  document.querySelectorAll('.lyrics-content').forEach(el => {
+    el.classList.remove('active');
+  });
+  // Remove active state from all lyrics subtabs
+  document.querySelectorAll('.lyrics-subtab').forEach(el => {
+    el.classList.remove('active');
+  });
+  // Show selected lyrics content
+  const selectedContent = document.getElementById('lyrics-' + lyricsType);
+  if (selectedContent) {
+    selectedContent.classList.add('active');
+  }
+  // Add active state to clicked lyrics subtab
+  event.target.classList.add('active');
+}
+
+// Initialize lyrics subtabs visibility on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const lyricsSubtabsContainer = document.getElementById('lyrics-subtabs-container');
+  const contentLyrics = document.getElementById('content-lyrics');
+  const songLength = document.querySelector('.song-length');
+  if (lyricsSubtabsContainer && contentLyrics && contentLyrics.classList.contains('active')) {
+    lyricsSubtabsContainer.classList.add('active');
+    if (songLength) songLength.classList.add('hide-border');
+  }
+});
 
 function switchAlbumArt(filename) {
   // Update the image source
