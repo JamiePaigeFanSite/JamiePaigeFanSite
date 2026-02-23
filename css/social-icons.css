@@ -1,0 +1,24 @@
+/* Social Media Icons Styling */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 6px;
+  height: 1em;
+  width: 1em;
+}
+
+.social-icon-img {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* Ensure icons work in different link contexts */
+a .social-icon {
+  flex-shrink: 0;
+}
+
+a:hover .social-icon-img {
+  opacity: 0.8;
+}
