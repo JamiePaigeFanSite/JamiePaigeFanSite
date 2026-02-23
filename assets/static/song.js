@@ -101,7 +101,7 @@ function switchAlbumArt(filename) {
     'erb.png': 'Arusechika',
     'ewz.jpg': 'REVERIEQUE, ricedeity',
     'fire.png': 'angelfaise',
-    'ghf.jpg': '',
+    'ghf.jpg': '?',
     'gr.jpg': 'kalrot',
     'hc.jpg': 'citruslucy',
     'hmt.jpg': 'pipiskulle',
