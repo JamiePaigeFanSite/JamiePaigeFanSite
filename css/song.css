@@ -471,3 +471,36 @@
 .ref-back-link a:hover {
   text-decoration: underline;
 }
+
+.tabs-spacer {
+  flex-grow: 1;
+}
+
+/* Version Tabs Styling */
+.version-tab {
+  font-family: "Nunito", sans-serif;
+  padding: 2px 16px;
+  height: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1em;
+  color: #000;
+  background-color: #FFFFFF;
+  font-weight: 500;
+  border: 3px solid #000;
+  border-bottom: 0px solid transparent;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.version-tab:hover {
+  color: #68BDE7;
+}
+
+.version-tab.active {
+  padding: 4px 16px;
+  color: #ef8a85;
+  border: 3px solid #ef8a85;
+  border-bottom: 0px solid transparent;
+  font-weight: bold;
+}
