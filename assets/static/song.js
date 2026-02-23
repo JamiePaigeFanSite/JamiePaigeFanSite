@@ -165,3 +165,33 @@ function previousSong() {
 function nextSong() {
   alert('Next song functionality to be implemented');
 }
+// Initialize reference tooltips
+function initializeReferences() {
+  document.querySelectorAll('.ref-tag').forEach(refTag => {
+    const refNum = refTag.getAttribute('data-ref');
+    const refElement = document.getElementById('ref-' + refNum);
+    
+    if (refElement) {
+      // Get the text content of the reference (without the back link)
+      const refText = refElement.textContent.replace('↑', '').trim();
+      // Set the tooltip text
+      refTag.setAttribute('data-ref-text', refText);
+      
+      // Add click handler to scroll to reference
+      refTag.addEventListener('click', function(e) {
+        e.preventDefault();
+        refElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Highlight the reference briefly
+        refElement.style.backgroundColor = 'rgba(240, 94, 85, 0.1)';
+        setTimeout(() => {
+          refElement.style.backgroundColor = '';
+        }, 2000);
+      });
+    }
+  });
+}
+
+// Initialize references when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  initializeReferences();
+});
