@@ -87,18 +87,33 @@ function switchTab(tabName) {
     el.classList.remove('active');
   });
   
-  // Determine which version is currently active
-  let activeVersionName = 'original';
-  for (const versionName of versionOrder) {
-    const versionElement = document.getElementById('version-' + versionName);
-    if (versionElement && versionElement.style.display === 'flex') {
-      activeVersionName = versionName;
-      break;
+  // Check if version system is in use
+  let contentId;
+  let lyricsSubtabsContainerId;
+  let activeVersion;
+  
+  if (versionOrder && versionOrder.length > 0) {
+    // Version-based logic
+    let activeVersionName = 'original';
+    for (const versionName of versionOrder) {
+      const versionElement = document.getElementById('version-' + versionName);
+      if (versionElement && versionElement.style.display === 'flex') {
+        activeVersionName = versionName;
+        break;
+      }
     }
+    
+    // Show selected content with version-appropriate ID
+    contentId = activeVersionName === 'original' ? ('content-' + tabName) : ('content-' + tabName + '-' + activeVersionName);
+    lyricsSubtabsContainerId = activeVersionName === 'original' ? 'lyrics-subtabs-container' : ('lyrics-subtabs-container-' + activeVersionName);
+    activeVersion = document.getElementById('version-' + activeVersionName);
+  } else {
+    // Simple logic for pages without version system
+    contentId = 'content-' + tabName;
+    lyricsSubtabsContainerId = 'lyrics-subtabs-container';
+    activeVersion = document.querySelector('.song-container') || document.body;
   }
   
-  // Show selected content with version-appropriate ID
-  const contentId = activeVersionName === 'original' ? ('content-' + tabName) : ('content-' + tabName + '-' + activeVersionName);
   const contentElement = document.getElementById(contentId);
   if (contentElement) {
     contentElement.classList.add('active');
@@ -121,9 +136,7 @@ function switchTab(tabName) {
   }
   
   // Show/hide lyrics subtabs based on selected tab
-  const lyricsSubtabsContainerId = activeVersionName === 'original' ? 'lyrics-subtabs-container' : ('lyrics-subtabs-container-' + activeVersionName);
   const lyricsSubtabsContainer = document.getElementById(lyricsSubtabsContainerId);
-  const activeVersion = document.getElementById('version-' + activeVersionName);
   const songLength = activeVersion ? activeVersion.querySelector('.song-length') : null;
   
   if (lyricsSubtabsContainer) {
@@ -138,39 +151,60 @@ function switchTab(tabName) {
 }
 
 function switchLyricsTab(lyricsType) {
-  // Determine which version is currently active
-  let activeVersionName = 'original';
-  for (const versionName of versionOrder) {
-    const versionElement = document.getElementById('version-' + versionName);
-    if (versionElement && versionElement.style.display === 'flex') {
-      activeVersionName = versionName;
-      break;
+  // Check if version system is in use
+  if (versionOrder && versionOrder.length > 0) {
+    // Version-based logic
+    let activeVersionName = 'original';
+    for (const versionName of versionOrder) {
+      const versionElement = document.getElementById('version-' + versionName);
+      if (versionElement && versionElement.style.display === 'flex') {
+        activeVersionName = versionName;
+        break;
+      }
     }
-  }
-  
-  const activeVersion = document.getElementById('version-' + activeVersionName);
-  if (!activeVersion) return;
-  
-  // Hide all lyrics content in the active version
-  activeVersion.querySelectorAll('.lyrics-content').forEach(el => {
-    el.classList.remove('active');
-  });
-  
-  // Remove active state from all lyrics subtabs
-  activeVersion.querySelectorAll('.lyrics-subtab').forEach(el => {
-    el.classList.remove('active');
-  });
-  
-  // Show selected lyrics content with version-appropriate ID
-  const suffixId = activeVersionName === 'original' ? ('lyrics-' + lyricsType) : ('lyrics-' + lyricsType + '-' + activeVersionName);
-  const selectedContent = document.getElementById(suffixId);
-  if (selectedContent) {
-    selectedContent.classList.add('active');
-  }
-  
-  // Add active state to clicked lyrics subtab
-  if (event && event.target) {
-    event.target.classList.add('active');
+    
+    const activeVersion = document.getElementById('version-' + activeVersionName);
+    if (!activeVersion) return;
+    
+    // Hide all lyrics content in the active version
+    activeVersion.querySelectorAll('.lyrics-content').forEach(el => {
+      el.classList.remove('active');
+    });
+    
+    // Remove active state from all lyrics subtabs
+    activeVersion.querySelectorAll('.lyrics-subtab').forEach(el => {
+      el.classList.remove('active');
+    });
+    
+    // Show selected lyrics content with version-appropriate ID
+    const suffixId = activeVersionName === 'original' ? ('lyrics-' + lyricsType) : ('lyrics-' + lyricsType + '-' + activeVersionName);
+    const selectedContent = document.getElementById(suffixId);
+    if (selectedContent) {
+      selectedContent.classList.add('active');
+    }
+    
+    // Add active state to clicked lyrics subtab
+    if (event && event.target) {
+      event.target.classList.add('active');
+    }
+  } else {
+    // Simple logic for pages without version system
+    document.querySelectorAll('.lyrics-content').forEach(el => {
+      el.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.lyrics-subtab').forEach(el => {
+      el.classList.remove('active');
+    });
+    
+    const selectedContent = document.getElementById('lyrics-' + lyricsType);
+    if (selectedContent) {
+      selectedContent.classList.add('active');
+    }
+    
+    if (event && event.target) {
+      event.target.classList.add('active');
+    }
   }
 }
 
@@ -192,30 +226,45 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function switchAlbumArt(filename) {
-  // Determine which version is currently active
-  let activeVersionName = 'original';
-  for (const versionName of versionOrder) {
-    const versionElement = document.getElementById('version-' + versionName);
-    if (versionElement && versionElement.style.display === 'flex') {
-      activeVersionName = versionName;
-      break;
+  let albumArtImageId;
+  let coverArtistDisplayId;
+  let activeVersionElement;
+  
+  // Check if version system is in use
+  if (versionOrder && versionOrder.length > 0) {
+    // Version-based logic
+    let activeVersionName = 'original';
+    for (const versionName of versionOrder) {
+      const versionElement = document.getElementById('version-' + versionName);
+      if (versionElement && versionElement.style.display === 'flex') {
+        activeVersionName = versionName;
+        break;
+      }
     }
+    
+    // Get the config for the active version
+    const config = versionConfig[activeVersionName];
+    if (!config) return;
+    
+    albumArtImageId = config.albumArtImageId;
+    coverArtistDisplayId = config.coverArtistDisplayId;
+    activeVersionElement = document.getElementById('version-' + activeVersionName);
+  } else {
+    // Simple logic for pages without version system
+    albumArtImageId = 'album-art-image';
+    coverArtistDisplayId = 'cover-artist-display';
+    activeVersionElement = document.querySelector('.song-container') || document.body;
   }
   
-  // Get the config for the active version
-  const config = versionConfig[activeVersionName];
-  if (!config) return;
-  
-  // Update the image source for the correct version
-  const albumArtElement = document.getElementById(config.albumArtImageId);
+  // Update the image source
+  const albumArtElement = document.getElementById(albumArtImageId);
   if (albumArtElement) {
     albumArtElement.src = '../../public/images/cover-art/' + filename;
   }
   
   // Remove active state from all album art tabs in the active version
-  const activeVersion = document.getElementById('version-' + activeVersionName);
-  if (activeVersion) {
-    activeVersion.querySelectorAll('.album-tab').forEach(el => {
+  if (activeVersionElement) {
+    activeVersionElement.querySelectorAll('.album-tab').forEach(el => {
       el.classList.remove('active');
     });
   }
@@ -226,7 +275,7 @@ function switchAlbumArt(filename) {
   }
   
   // Update cover artist based on selected album art
-  const coverArtistDisplay = document.getElementById(config.coverArtistDisplayId);
+  const coverArtistDisplay = document.getElementById(coverArtistDisplayId);
   const coverArtists = {
     'aa.png': 'RJ Lake',
     'aed.png': 'Valerie Halla',
