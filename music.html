@@ -22,68 +22,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400..800">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="assets/static/load.js"></script>
-  <style>
-      html {
-        overflow-y: scroll;
-      }
-      .albumview {
-        margin-top:20px
-      }
-      .leftview {
-        height:auto;
-        width: 200px;
-      }
-      a {
-        cursor: pointer;
-      }
-      .bodybar {
-        height:auto;
-      }
-      .album-item a {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 28px;
-      }
-      .dropdown {
-        display: none;
-        background-color: #fdfdfd;
-        border: 3px solid #cfcdd2;
-        min-width: 160px;
-        padding: 4px 4px;
-        z-index: 1;
-        margin-top: 5px;
-        border-radius: 4px;
-      }
-      .dropdown.show {
-        display: block;
-      }
-      .dropdown a {
-        padding: 2px 8px;
-        text-decoration: none;
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        border-radius: 2px;
-      }
-      .album-item {
-        position: relative;
-        margin-top:4px;
-        margin-left:20px;
-        margin-right:20px;
-      }
-    </style>
-    <script>
-      function show(param_div_id) {
-        document.getElementById('rightview').innerHTML = document.getElementById(param_div_id).innerHTML;
-      }
-      
-      function toggleDropdown(albumName) {
-        const dropdown = document.getElementById('dropdown-' + albumName);
-        dropdown.classList.toggle('show');
-      }
-    </script>
+    <link href="css/music.css" rel="stylesheet" type="text/css" media="all">
   </head>
   <body>
   <a href="./"><div class="head"></div></a>
@@ -99,86 +38,151 @@
       </td>
       <td>
         <div class="bodybar">
-        <table class="albumview">
-        <tr>
-        <td class="leftview">
-          <strong>Albums:</strong><br>
-          <div class="album-item">
-            <a onclick="toggleDropdown('anewagain')">Anew Again</a><br>
-            <div id="dropdown-anewagain" class="dropdown">
-              <a href="music/aa/decree.html">Decree</a>
-              <a href="music/aa/space-center.html">Space Center</a>
-              <a href="music/aa/skygirl.html">Skygirl</a>
-              <a href="music/aa/imaginary-effervescent.html">Imaginary, Effervescent</a>
-              <a href="music/aa/adelaide-delays.html">Adelaide Delays</a>
-              <a href="music/aa/song-for-jijo.html">Song for Jijo</a>
-              <a href="music/aa/grand-restore.html">Grand Restore</a>
-              <a href="music/aa/space-center-pt-2.html">Space Center [pt. 2]</a>
-              <a href="music/aa/good-time-lead-line.html">Good Time, Lead Line</a>
+          <h2 class="album-section-heading">Jamie Paige Albums</h2>
+          <div class="albumgallery">
+            <div class="album-tile">
+              <a href="music/aa.html">
+                <img src="public/images/cover-art/aa.png" alt="Anew Again" class="album-cover">
+                <span class="album-title">Anew Again</span>
+                <span class="album-subtitle">(9 tracks, 26:17)</span>
+              </a>
             </div>
-            <a onclick="toggleDropdown('autumn-every-day')">Autumn Every Day</a><br>
-            <div id="dropdown-autumn-every-day" class="dropdown">
-              <a href="music/aed/automated-answering-service.html">Automated Answering Service</a>
-              <a href="music/aed/a-repetition.html">A Repetition</a>
-              <a href="music/aed/to-atlantis.html">To Atlantis</a>
-              <a href="music/aed/its-2013-again.html">It's 2013 Again</a>
-              <a href="music/aed/too-much-autotune.html">Too Much Autotune</a>
-              <a href="music/aed/special-days.html">Special Days</a>
-              <a href="music/aed/amelie.html">Amélie</a>
-              <a href="music/aed/secret-girlfriend.html">Secret Girlfriend</a>
-              <a href="music/aed/bizarre-love-triangle.html">Bizarre Love Triangle</a>
-              <a href="music/aed/pass.html">Pass</a>
-              <a href="music/aed/honor-majesty.html">Honor Majesty</a>
-              <a href="music/aed/autumn-every-day.html">Autumn Every Day</a>
-              <a href="music/aed/hold-me-tightly.html">Hold Me Tightly</a>
+            <div class="album-tile">
+              <a href="music/aed.html">
+                <img src="public/images/cover-art/aed.png" alt="Autumn Every Day" class="album-cover">
+                <span class="album-title">Autumn Every Day</span>
+                <span class="album-subtitle">(13 tracks, 52:45)</span>
+              </a>
             </div>
-            <a onclick="toggleDropdown('bittersweet')">Bittersweet</a><br>
-            <div id="dropdown-bittersweet" class="dropdown">
-              <a href="music/bs/second-hello.html">Second Hello</a>
-              <a href="music/bs/gentle-heart.html">Gentle Heart</a>
-              <a href="music/bs/asemic-speech.html">Asemic Speech</a>
-              <a href="music/bs/nothing-with-you.html">Nothing (with you)</a>
-              <a href="music/bs/paisley-patterns.html">Paisley Patterns</a>
-              <a href="music/bs/gummyworm.html">Gummyworm</a>
-              <a href="music/bs/greatsword-love-as-fire.html">Greatsword / Love as Fire</a>
-              <a href="music/bs/ally.html">Ally</a>
-              <a href="music/bs/ballroom.html">Ballroom</a>
-              <a href="music/bs/bittersweet.html">Bittersweet</a>
-              <a href="music/bs/close.html">Close</a>
-              <a href="music/bs/fiction.html">Fiction</a>
+            <div class="album-tile">
+              <a href="music/bs.html">
+                <img src="public/images/cover-art/bs.png" alt="Bittersweet" class="album-cover">
+                <span class="album-title">Bittersweet</span>
+                <span class="album-subtitle">(12 tracks, 45:47)</span>
+              </a>
             </div>
-            <a onclick="toggleDropdown('constant')">Constant Companions (Deluxe Edition)</a><br>
-            <div id="dropdown-constant" class="dropdown">
-              <a href="music/cc/dyad.html">Dyad</a>
-              <a href="music/cc/not-quite-there.html">Not Quite There</a>
-              <a href="music/cc/rot-for-clout.html">ROT FOR CLOUT</a>
-              <a href="music/cc/i-wish-that-i-could-fall.html">I Wish That I Could Fall</a>
-              <a href="music/cc/cadmium-colors.html">Cadmium Colors</a>
-              <a href="music/cc/breeze-blows.html">Breeze Blows</a>
-              <a href="music/cc/aggrandicize.html">Aggrandicize</a>
-              <a href="music/cc/liaison.html">Liaison</a>
-              <a href="music/cc/object-of-affection.html">Object of Affection</a>
-              <a href="music/cc/clouddrop.html">Clouddrop</a>
-              <a href="music/cc/my-darling-my-companion.html">My Darling, My Companion</a>
-              <a href="music/cc/machine-love.html">Machine Love</a>
-              <a href="music/cc/birdbrain.html">BIRDBRAIN</a>
-              <a href="music/cc/shiny-chariot.html">Shiny Chariot</a>
-              <a href="music/cc/strawberry.html">Strawberry</a>
-              <a href="music/cc/manifesto.html">Manifesto</a>
-              <a href="music/cc/dance-delightful.html">Dance Delightful</a>
+            <div class="album-tile">
+              <a href="music/cc.html">
+                <img src="public/images/cover-art/cc.png" alt="Constant Companions" class="album-cover">
+                <span class="album-title">Constant Companions</span>
+                <span class="album-subtitle">(11 tracks, 46:55)</span>
+              </a>
             </div>
-            <a onclick="toggleDropdown('c-sides')">c-sides</a>
-            <div id="dropdown-c-sides" class="dropdown">
-              <a href="music/cs/papergirl.html">papergirl</a>
-              <a href="music/cs/little-anger.html">little anger</a>
-              <a href="music/cs/ringtone.html">ringtone</a>
-              <a href="music/cs/one-small-moment-of-silence.html">one small moment of silence</a>
-              <a href="music/cs/some-more-of-that-song.html">some more of that song</a>
+            <div class="album-tile">
+              <a href="music/ccde.html">
+                <img src="public/images/cover-art/ccde.png" alt="Constant Companions (Deluxe Edition)" class="album-cover">
+                <span class="album-title">Constant Companions<br>(Deluxe Edition)</span>
+                <span class="album-subtitle">(17 tracks, 1:09:36)</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/cs.html">
+                <img src="public/images/cover-art/cs.png" alt="c-sides" class="album-cover">
+                <span class="album-title">c-sides</span>
+                <span class="album-subtitle">(5 tracks, 16:48)</span>
+              </a>
             </div>
           </div>
-
-        </td>
-        </table>
+          <h2 class="album-section-heading">Jam Packs</h2>
+          <div class="albumgallery">
+            <div class="album-tile">
+              <a href="music/aod.html">
+                <img src="public/images/cover-art/aod.png" alt="Autumn's Other Days" class="album-cover">
+                <span class="album-title">Autumn's Other Days</span>
+                <span class="album-subtitle">(21 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/bc.html">
+                <img src="public/images/cover-art/bc.jpg" alt="Buttercream" class="album-cover">
+                <span class="album-title">Buttercream</span>
+                <span class="album-subtitle">(22 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/jpjp3.html">
+                <img src="public/images/cover-art/jpjp3.png" alt="Jamie P Jam Pack - March 2024" class="album-cover">
+                <span class="album-title">Jamie P Jam Pack<br>- March 2024</span>
+                <span class="album-subtitle">(7 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/jpjp4.html">
+                <img src="public/images/cover-art/jpjp4.png" alt="Jamie P Jam Pack - April 2024" class="album-cover">
+                <span class="album-title">Jamie P Jam Pack<br>- April 2024</span>
+                <span class="album-subtitle">(6 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/jpjp5.html">
+                <img src="public/images/cover-art/jpjp5.jpg" alt="Jamie P Jam Pack - May 2024" class="album-cover">
+                <span class="album-title">Jamie P Jam Pack<br>- May 2024</span>
+                <span class="album-subtitle">(10 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/jpjp6.html">
+                <img src="public/images/cover-art/jpjp6.png" alt="Jamie P Jam Pack - June 2024" class="album-cover">
+                <span class="album-title">Jamie P Jam Pack<br>- June 2024</span>
+                <span class="album-subtitle">(7 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/ccii.html">
+                <img src="public/images/cover-art/ccii.png" alt="Jamie P Jam Pack - Constant Companions (Initial Ideas)" class="album-cover">
+                <span class="album-title">Jamie P Jam Pack<br>- Constant Companions<br>(Initial Ideas)</span>
+                <span class="album-subtitle">(11 tracks, [runtime])</span>
+              </a>
+            </div>
+          </div>
+          <h2 class="album-section-heading">Flavor Foley</h2>
+          <div class="albumgallery">
+            <div class="album-tile">
+              <a href="music/ccontrepoint.html">
+                <img src="public/images/cover-art/ccontrepoint.png" alt="Cardiac Contrepoint" class="album-cover">
+                <span class="album-title">Cardiac Contrepoint</span>
+                <span class="album-subtitle">(9 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/ewz.html">
+                <img src="public/images/cover-art/ewz.jpg" alt="Electric Weekend Zone" class="album-cover">
+                <span class="album-title">Electric Weekend Zone</span>
+                <span class="album-subtitle">(1 track, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/ff2.html">
+                <img src="public/images/cover-art/static.jpg" alt="Flavor Foley Album 2" class="album-cover">
+                <span class="album-title">Flavor Foley Album 2</span>
+                <span class="album-subtitle">(5 tracks, [runtime])</span>
+              </a>
+            </div>
+          </div>
+          <h2 class="album-section-heading">Live Shows</h2>
+          <div class="albumgallery">
+            <div class="album-tile">
+              <a href="music/ds2021.html">
+                <img src="public/images/cover-art/ds2021.png" alt="Jamie Paige Live at Digital Stars feat. MIKU & GUMI 2021" class="album-cover">
+                <span class="album-title">Jamie Paige Live at<br>Digital Stars feat.<br>MIKU & GUMI 2021</span>
+                <span class="album-subtitle">(9 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/ds2024.html">
+                <img src="public/images/cover-art/ds2024.png" alt="ODDEEO & Jamie Paige Set | MikuExpo 2024 Digital Stars" class="album-cover">
+                <span class="album-title">ODDEEO & Jamie Paige<br>Set | MikuExpo 2024<br>Digital Stars</span>
+                <span class="album-subtitle">(17 tracks, [runtime])</span>
+              </a>
+            </div>
+            <div class="album-tile">
+              <a href="music/bdkt26.html">
+                <img src="public/images/cover-art/bdkt26.png" alt="Jamie Paige @ TETO SONIC 2026" class="album-cover">
+                <span class="album-title">Jamie Paige @<br>TETO SONIC 2026</span>
+                <span class="album-subtitle">(22 tracks, [runtime])</span>
+              </a>
+            </div>
+          </div>
         </div>
       </td>
     </tr>
