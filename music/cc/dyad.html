@@ -1,5 +1,21 @@
 <!DOCTYPE html>
-<html style="background-image: url(../../public/images/backgrounds/crittercc.png);">
+<html style="background-image: url(../../public/images/backgrounds/crittercc.png);" 
+data-versions='{
+  "original": {
+    "name": "Original",
+    "background": "crittercc.png",
+    "defaultAlbumArt": "cc.png",
+    "albumArtImageId": "album-art-image",
+    "coverArtistDisplayId": "cover-artist-display"
+  },
+  "alt1": {
+    "name": "Demo",
+    "background": "critterccii.png",
+    "defaultAlbumArt": "ccii.png",
+    "albumArtImageId": "album-art-image-alt1",
+    "coverArtistDisplayId": "cover-artist-display-alt1"
+  }
+}'>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,11 +60,17 @@
           <button class="song-tab" onclick="switchTab('lyrics')">Lyrics</button>
           <button class="song-tab" onclick="switchTab('motifs')">Connections</button>
           <button class="song-tab" onclick="switchTab('extended')">Extended Info</button>
+          
+          <div class="tabs-spacer"></div>
+          
+          <button class="version-tab active" onclick="switchVersion('original')">Original</button>
+          <button class="version-tab" onclick="switchVersion('alt1')">Demo</button>
         </div>
       </div>
       
       <div class="bodybar">
-        <div class="song-container">
+        <div class="version-wrapper">
+          <div id="version-original" class="song-container">
           <!-- Left View -->
           <div class="song-leftview">
             <h1 class="song-title">Dyad</h1>
@@ -81,100 +103,100 @@
               
               <div id="lyrics-raw" class="lyrics-content">
                 <p>
-We've spent a lifetime apart<br>
-So I keep a record in my heart<br>
-Of all the waiting in the wings I've done<br>
-The wretched little tale I've spun<br>
-Because it's every day I'm waiting for more<br>
-A message from the opposite shore<br>
-Some coded beeps that I can never unwind<br>
-And I'm not even sure that you mind<br>
-It's a repetition every day<br>
-Just waiting on the words to say<br>
-God, I'm desperate to hear your voice<br>
-I wish I even had a damn choice<br>
-<br>
-'Cause when I stare across the gap between our hearts<br>
-I wanna meet you in the middle!<br>
-I wanna meet you in the middle<br>
-<br>
-Baby, do you know what you wanna hear?<br>
-'Cause you can say the word, make it oh-so-clear<br>
-Or you can sit around, watch it disappear<br>
-Watch the truth, it breaks in two<br>
-But you don't even know what you wanna say<br>
-It only takes an instant to slip away<br>
-But if you grab a hold, make a grand escape<br>
-One to two, just me and you<br>
-<br>
-Singin', dream together, we can dream together<br>
-We can fantasize about the fairer weather<br>
-If we stay together, we can stay together<br>
-Hold each other closer like we're birds of a feather<br>
-Dream together, we can dream together<br>
-Baby, ain't nobody gonna live forever<br>
-So we stay together, we should stay together<br>
-Hold each other closer like we're birds of a feather<br>
-<br>
-(Baby, do you know what you wanna hear?<br>
-'Cause you can say the word, make it oh-so-clear)<br>
-<br>
-I've been wanting for a shot that's sharp<br>
-So I paint a target on my heart<br>
-Hoping bow and arrow strikes me true<br>
-So I can throw it back to you<br>
-Baby, aim is all I got to show<br>
-An imitation cupid's bow<br>
-And I'm a fool without a firing zone<br>
-I just don't wanna be alone<br>
-Now I'm walking 'round the corner again<br>
-But I don't want the story to end<br>
-God, I'm desperately falling so far<br>
-I'll fall until it breaks my heart<br>
-<br>
-And though I'm staring out the hole between my lungs<br>
-I wanna close it just a little!<br>
-So can we close it just a little?<br>
-<br>
-Baby, do you know what you wanna hear?<br>
-'Cause you can say the word, make it oh-so-clear<br>
-Or you can sit around, watch it disappear<br>
-Watch the truth, it breaks in two<br>
-But you don't even know what you wanna say<br>
-You'll wait until your life starts to slip away<br>
-But if you grab a hold, let the message play<br>
-One to two, just me and you<br>
-<br>
-Singin', dream together, we can dream together<br>
-We can fantasize about the fairer weather<br>
-If we stay together, we can stay together<br>
-Hold each other closer like we're birds of a feather<br>
-Dream together, we can dream together<br>
-Baby, ain't nobody gonna live forever<br>
-So we stay together, we should stay together<br>
-Hold each other closer like we're birds of a feather<br>
-<br>
-But when I stare across the gap between<br>
-The sprawl and all the little things<br>
-The borders break and fall away<br>
-To order from the disarray<br>
-I understand what I should know<br>
-I nock an arrow on my bow<br>
-And fire across the evermore<br>
-I shoot to hit the grand restore<br>
-<br>
-And fall, at last, to land between your arms<br>
-I think I love you just a little!<br>
-Maybe more than just a little...<br>
-<br>
-Singin', dream together, we can dream together<br>
-We can fantasize about the fairer weather<br>
-If we stay together, we can stay together<br>
-Hold each other closer like we're birds of a feather<br>
-Dream together, we can dream together<br>
-Baby, ain't nobody gonna live forever<br>
-So we stay together, we should stay together<br>
-Hold each other closer like we're birds of a feather
+                We've spent a lifetime apart<br>
+                So I keep a record in my heart<br>
+                Of all the waiting in the wings I've done<br>
+                The wretched little tale I've spun<br>
+                Because it's every day I'm waiting for more<br>
+                A message from the opposite shore<br>
+                Some coded beeps that I can never unwind<br>
+                And I'm not even sure that you mind<br>
+                It's a repetition every day<br>
+                Just waiting on the words to say<br>
+                God, I'm desperate to hear your voice<br>
+                I wish I even had a damn choice<br>
+                <br>
+                'Cause when I stare across the gap between our hearts<br>
+                I wanna meet you in the middle!<br>
+                I wanna meet you in the middle<br>
+                <br>
+                Baby, do you know what you wanna hear?<br>
+                'Cause you can say the word, make it oh-so-clear<br>
+                Or you can sit around, watch it disappear<br>
+                Watch the truth, it breaks in two<br>
+                But you don't even know what you wanna say<br>
+                It only takes an instant to slip away<br>
+                But if you grab a hold, make a grand escape<br>
+                One to two, just me and you<br>
+                <br>
+                Singin', dream together, we can dream together<br>
+                We can fantasize about the fairer weather<br>
+                If we stay together, we can stay together<br>
+                Hold each other closer like we're birds of a feather<br>
+                Dream together, we can dream together<br>
+                Baby, ain't nobody gonna live forever<br>
+                So we stay together, we should stay together<br>
+                Hold each other closer like we're birds of a feather<br>
+                <br>
+                (Baby, do you know what you wanna hear?<br>
+                'Cause you can say the word, make it oh-so-clear)<br>
+                <br>
+                I've been wanting for a shot that's sharp<br>
+                So I paint a target on my heart<br>
+                Hoping bow and arrow strikes me true<br>
+                So I can throw it back to you<br>
+                Baby, aim is all I got to show<br>
+                An imitation cupid's bow<br>
+                And I'm a fool without a firing zone<br>
+                I just don't wanna be alone<br>
+                Now I'm walking 'round the corner again<br>
+                But I don't want the story to end<br>
+                God, I'm desperately falling so far<br>
+                I'll fall until it breaks my heart<br>
+                <br>
+                And though I'm staring out the hole between my lungs<br>
+                I wanna close it just a little!<br>
+                So can we close it just a little?<br>
+                <br>
+                Baby, do you know what you wanna hear?<br>
+                'Cause you can say the word, make it oh-so-clear<br>
+                Or you can sit around, watch it disappear<br>
+                Watch the truth, it breaks in two<br>
+                But you don't even know what you wanna say<br>
+                You'll wait until your life starts to slip away<br>
+                But if you grab a hold, let the message play<br>
+                One to two, just me and you<br>
+                <br>
+                Singin', dream together, we can dream together<br>
+                We can fantasize about the fairer weather<br>
+                If we stay together, we can stay together<br>
+                Hold each other closer like we're birds of a feather<br>
+                Dream together, we can dream together<br>
+                Baby, ain't nobody gonna live forever<br>
+                So we stay together, we should stay together<br>
+                Hold each other closer like we're birds of a feather<br>
+                <br>
+                But when I stare across the gap between<br>
+                The sprawl and all the little things<br>
+                The borders break and fall away<br>
+                To order from the disarray<br>
+                I understand what I should know<br>
+                I nock an arrow on my bow<br>
+                And fire across the evermore<br>
+                I shoot to hit the grand restore<br>
+                <br>
+                And fall, at last, to land between your arms<br>
+                I think I love you just a little!<br>
+                Maybe more than just a little...<br>
+                <br>
+                Singin', dream together, we can dream together<br>
+                We can fantasize about the fairer weather<br>
+                If we stay together, we can stay together<br>
+                Hold each other closer like we're birds of a feather<br>
+                Dream together, we can dream together<br>
+                Baby, ain't nobody gonna live forever<br>
+                So we stay together, we should stay together<br>
+                Hold each other closer like we're birds of a feather
 
                 </p>
               </div>
@@ -261,6 +283,107 @@ Hold each other closer like we're birds of a feather
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Alternative Version -->
+        <div id="version-alt1" class="song-container" style="display: none;">
+          <!-- Left View -->
+          <div class="song-leftview">
+            <h1 class="song-title">dyad with vox.mp3</h1>
+            <p class="song-length">Length: 0:40</p>
+            
+            <!-- Lyrics Subtabs (only visible when lyrics tab is active) -->
+            <div id="lyrics-subtabs-container-alt1" class="lyrics-subtabs-container">
+              <div class="lyrics-subtabs">
+                <button class="lyrics-subtab active" onclick="switchLyricsTab('annotated')">Annotated Lyrics</button>
+                <button class="lyrics-subtab" onclick="switchLyricsTab('raw')">Raw Lyrics</button>
+              </div>
+            </div>
+            
+            <!-- Tab Content -->
+            <div id="content-lyrics-alt1" class="song-content active">
+              <div id="lyrics-annotated-alt1" class="lyrics-content active">
+                <p>Lyrics content goes here...</p>
+              
+
+              <!-- References Section  -->
+              <div class="references-section">
+                <h3>References</h3>
+                <ol class="references-list">
+                  <li id="ref-1"><span class="ref-back-link"><a href="#ref-marker-1">↑</a></span></li>
+                </ol>
+              </div>
+              
+              </div>
+
+              
+              <div id="lyrics-raw-alt1" class="lyrics-content">
+                <p>Raw lyrics content goes here</p>
+              </div>
+            </div>
+            
+            <div id="content-motifs-alt1" class="song-content">
+              <p>Motifs content goes here...</p>
+            </div>
+            
+            <div id="content-summary-alt1" class="song-content">
+              <p>Summary content goes here...</p>
+            </div>
+            
+            <div id="content-extended-alt1" class="song-content">
+              <p>Extended info content goes here...</p>
+            </div>
+          </div>
+          
+          <!-- Right View -->
+          <div class="song-rightview">
+            <!-- Album Art Tabs -->
+            <div class="album-tabs-container">
+              <div class="album-tabs">
+                <button class="album-tab active" onclick="switchAlbumArt('ccii.png')">Album</button>
+              </div>
+            </div>
+            <!-- Cover Art -->
+            <div class="song-cover">
+              <img id="album-art-image-alt1" src="../../public/images/cover-art/ccii.png" alt="Constant Companions Initial Ideas Album Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+            </div>
+            <!-- Cover Art Credit -->
+            <div class="cover-art-footer">
+              <div class="cover-art-credit">Cover art by: <span id="cover-artist-display-alt1">REVERIEQUE</span></div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="song-nav-buttons">
+              <a href="javascript:void(0);" onclick="goToSong('/music/bs/fiction.html')" class="song-nav-link">← Previous</a>
+              <a href="javascript:void(0);" onclick="goToSong('/music/cc/not-quite-there.html')" class="song-nav-link">Next →</a>
+            </div>
+            
+            <!-- Album & Date -->
+            <div class="song-info-block">
+              <div class="song-info-label">Appears On</div>
+              <div class="song-info-content">Constant Companions (Initial Ideas) - 1/11</div>
+            </div>
+            
+            <div class="song-info-block">
+              <div class="song-info-label">Release Date</div>
+              <div class="song-info-content">10/05/2024</div>
+            </div>
+            
+            <!-- Credits & Contributors -->
+            <div class="song-info-block">
+              <div class="song-info-label">Artist</div>
+              <div class="song-info-content">Jamie Paige</div>
+            </div>
+            
+            <!-- Links -->
+            <div class="song-info-block">
+              <div class="song-info-label">Listen</div>
+              <div class="song-links">
+                <a href="https://jamiepaige.bandcamp.com/track/dyad-with-vox-mp3">Bandcamp</a>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>
