@@ -71,8 +71,8 @@ function switchVersion(versionName) {
   // Activate the version tab
   event.target.classList.add('active');
   
-  // Reset tab view to Lyrics
-  switchTab('lyrics');
+  // Reset tab view to Summary
+  switchTab('summary');
 }
 
 
@@ -121,9 +121,9 @@ function switchTab(tabName) {
   
   // Find and activate the correct tab button by mapping tabName to index
   const tabNameToIndex = {
-    'lyrics': 0,
-    'motifs': 1,
-    'summary': 2,
+    'summary': 0,
+    'lyrics': 1,
+    'motifs': 2,
     'extended': 3
   };
   const tabIndex = tabNameToIndex[tabName];
@@ -211,6 +211,9 @@ function switchLyricsTab(lyricsType) {
 // Initialize lyrics subtabs visibility on page load
 document.addEventListener('DOMContentLoaded', function() {
   loadVersionConfig();
+  
+  // Load summary as default tab
+  switchTab('summary');
   
   const originalVersion = document.getElementById('version-original');
   const lyricsSubtabsContainer = document.getElementById('lyrics-subtabs-container');
