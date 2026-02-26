@@ -30,6 +30,15 @@ async function searchFile(fileEntry, query) {
       'cover-art-footer'
     ];
     
+    // Exclude annotated lyrics from search
+    const excludeIds = ['lyrics-annotated'];
+    excludeIds.forEach(id => {
+      const element = doc.getElementById(id);
+      if (element) {
+        element.remove();
+      }
+    });
+    
     // Remove excluded elements
     excludeClasses.forEach(className => {
       doc.querySelectorAll('.' + className).forEach(el => {
