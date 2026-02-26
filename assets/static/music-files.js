@@ -63,8 +63,6 @@ const musicFilePaths = [
   { album: 'Constant Companions (Deluxe Edition)', path: '/music/cc/clouddrop.html' },
   { album: 'Constant Companions', path: '/music/cc/my-darling-my-companion.html' },
   { album: 'Constant Companions', path: '/music/cc/machine-love.html' },
-  { album: 'Constant Companions (Deluxe Edition)', path: '/music/cc/my-darling-my-companion.html' },
-  { album: 'Constant Companions (Deluxe Edition)', path: '/music/cc/machine-love.html' },
   { album: 'Constant Companions (Deluxe Edition)', path: '/music/cc/birdbrain.html' },
   { album: 'Constant Companions (Deluxe Edition)', path: '/music/cc/shiny-chariot.html' },
   { album: 'Constant Companions (Deluxe Edition)', path: '/music/cc/strawberry.html' },
