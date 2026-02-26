@@ -1,28 +1,132 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      .quoteDisplay {
-        line-height: 20px;
-        padding: 0px;
-        width: 400px;
-      }
-      a {
-        text-decoration: none;
-        color: #ef8a85;
-      }
-      a:hover {
-        color: #68BDE7;
-      }
-    </style>
-    <script>
-      (function newQuote() {
-        var quotes = ["welcome to the fiction!", "i say hello to you again!", "paisley pudge!", "i'll hit the grand restore!", "dedicated to you!", "here, it's autumn every day!", "just hit the encore, baby!", "you're my ally-alli!", "it's the same thing over again!", "if you're gay, please press 1!", "paisley patterns adorn her soul!", "we can make it to atlantis if we try!", "she came to me in a dream!", "far too much autotune!", "how'd you end up here?", "can i still be close to you?", "guaranteed to do!", "i am the harbinger of death!", "jamie paige! that's my fuckin' name!", "hey jamie, let's go to walmart!", "1!", "and don't take it back!", "but can you make it on your own?", "is it really true?", "no more talking, let's just eat!", "just come and cook with me!", "shrimp miku in the place to be!", "you want a shrimp fajita or a shrimp scampi?", "now with 39 methods to prepare seafood!", "you hear me?", "your companion, undeterred!", "constant, at your beck and call!", "oh, undefined, i seem to be defeated...", "æ‹ã‚’ã—ã¦!", "zero, cross the great divide!", "can we wander for a spell?", "the last laugh is mine!", "FIRE!!!", "è¿™å£å‘³è®©æˆ‘é™¶é†‰!", "our paninis can't be beat!", "happy miku monday!", "happy teto tuesday!", "happy shrimpku sunday!", "shimp..............", "i wanna meet you in the middle!", "baby, do you know what you wanna hear?", "oh, to be your constant companion!", "hot dog!", "didn't you see the news today?", "throw down, let it all out!", "people come, and surely they go!", "oh, queen of venus, hear my plea!", "panic, in static, out-manic!", "classic, ecstatic, it's magic!", "get fucked!", "i don't get the messages!", "do you have some time to talk?", "yep, that's right!", "#yep #thatsright", "i'm crazaeiaieae!", "oh, i would give my world to you!", "i spend my hours doing alchemy!", "do you feel me?", "mid af!", "who listens to this shit?", "i can grow so big!", "i take this image and stretch!", "goated with the sauce!", "something simple you can settle on!", "never anything less than free!", "let the bass go!", "all love and adoration!", "i don't know when i'm supposed to stop!", "OHHHHHHHHH GODDDDDDDDDDDD MY PEEEEEENISSSSSSSSSSSSS", "i want you here, right next to me!", "effortless is overrated!", "promise me that you will do no harm!", "square up!", "god, i'm tired of waiting!", "i hit record and blow out the mic!", "is that human after all?", "can we connect?", "talk to me!", "...and nothing ever happens.", "Damn Jamie you pregnant.", "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.youtube.com/watch?v=k0UJtixnii8\">i talk in pictures, not in words!</a>"];
-        var randomQuote = Math.floor(Math.random() * quotes.length);
-        document.getElementById('quoteDisplay').innerHTML = quotes[randomQuote];
-      })();
-    </script>
-  </head>
-  <body>
-    <span id="quoteDisplay" style="line-height:20px; padding:0px; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);white-space: nowrap;"></span>
-  </body>
+<div 
+  id="searchContainer" 
+  style="
+    display: flex;
+    width: 103%;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: -6px 0 0 -6px;
+  "
+>
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="Search JamiePedia..."
+    style="
+      flex: 1;
+      max-width: 500px;
+      padding: 2px 8px;
+      border: 2px solid #351854;
+      border-radius: 3px;
+      font-family: 'Nunito', sans-serif;
+      height: 32px;
+      box-sizing: border-box;
+    "
+  >
+  <button 
+    id="searchBtn"
+    onmouseover="this.style.color='#68BDE7'"
+    onmouseout="this.style.color='#ef8a85'"
+    style="
+      padding: 2px 15px;
+      background-color: #FFFFFF;
+      color: #ef8a85;
+      border: 2px solid #351854;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      white-space: nowrap;
+      height: 32px;
+      box-sizing: border-box;
+      font-weight: bold;
+    "
+  >
+    Search
+  </button>
+</div>
+
+<!-- Search Results Modal -->
+<div 
+  id="searchModal" 
+  style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    overflow-y: auto;
+  "
+>
+  <div style="
+    background: #F9F7F5;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 900px;
+    border: 3px solid #351854;
+    border-radius: 5px;
+    max-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+  ">
+    <div style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    ">
+      <h2 
+        id="searchTitle" 
+        style="
+          color: #351854;
+          margin: 0;
+        "
+      >
+        Search Results
+      </h2>
+      <button 
+        id="closeSearchModal" 
+        onmouseover="this.style.color='#68BDE7'"
+        onmouseout="this.style.color='#ef8a85'"
+        style="
+          background-color: #FFFFFF;
+          color: #ef8a85;
+          border: 3px solid #351854;
+          padding: 2px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: bold;
+        "
+      >
+        ×
+      </button>
+    </div>
+    <input 
+      type="text" 
+      id="resultFilterInput" 
+      placeholder="Search..."
+      style="
+        width: 100%;
+        padding: 8px 12px;
+        border: 2px solid #351854;
+        border-radius: 3px;
+        font-family: 'Nunito', sans-serif;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+      "
+    >
+    <div 
+      id="searchResults" 
+      style="
+        flex: 1;
+        overflow-y: auto;
+      "
+    ></div>
+  </div>
+</div>
