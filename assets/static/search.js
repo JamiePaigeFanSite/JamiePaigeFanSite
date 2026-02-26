@@ -123,6 +123,58 @@ async function searchFile(fileEntry, query) {
       const end = Math.min(textWithBrMarkers.length, index + lowerQuery.length + 60);
       const snippet = textWithBrMarkers.substring(start, end).trim();
       
+      // Detect page type (album vs song)
+      const pathParts = fileEntry.path.split('/').filter(p => p);
+      const isAlbumPage = pathParts.length === 2; // /music/aa.html
+      const isSongPage = pathParts.length === 3; // /music/aa/song.html
+      
+      // Detect which content types contain the search query
+      const contentTypes = [];
+      
+      if (isSongPage) {
+        const summaryDiv = doc.querySelector('#content-summary');
+        const lyricsDiv = doc.querySelector('#content-lyrics');
+        const motifsDiv = doc.querySelector('#content-motifs');
+        const extendedDiv = doc.querySelector('#content-extended');
+        const rightView = doc.querySelector('.song-rightview');
+        
+        // Check each content area
+        if (summaryDiv && summaryDiv.textContent.toLowerCase().includes(lowerQuery)) {
+          contentTypes.push('summary');
+        }
+        if (lyricsDiv && lyricsDiv.textContent.toLowerCase().includes(lowerQuery)) {
+          contentTypes.push('lyrics');
+        }
+        if (motifsDiv && motifsDiv.textContent.toLowerCase().includes(lowerQuery)) {
+          contentTypes.push('connections');
+        }
+        if (extendedDiv && extendedDiv.textContent.toLowerCase().includes(lowerQuery)) {
+          contentTypes.push('extended');
+        }
+        if (rightView && rightView.textContent.toLowerCase().includes(lowerQuery)) {
+          contentTypes.push('metadata');
+        }
+      }
+      
+      // Check for page titles (directly check if songTitle contains the query)
+      if (songTitle && songTitle.textContent.toLowerCase().includes(lowerQuery)) {
+        contentTypes.push('page-titles');
+      }
+      
+      // Check for page titles in other headings (h1-h6) that aren't the songTitle
+      const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      for (const heading of headings) {
+        if (heading !== songTitle && heading.textContent.toLowerCase().includes(lowerQuery)) {
+          contentTypes.push('page-titles');
+          break;
+        }
+      }
+      
+      // If no specific content type detected, mark as general
+      if (contentTypes.length === 0) {
+        contentTypes.push('other');
+      }
+      
       return {
         album: fileEntry.album,
         title: title,
@@ -130,7 +182,9 @@ async function searchFile(fileEntry, query) {
         content: snippet,
         coverSrc: coverSrc,
         hasContentBefore: start > 0,
-        hasContentAfter: end < textWithBrMarkers.length
+        hasContentAfter: end < textWithBrMarkers.length,
+        pageType: isAlbumPage ? 'album' : 'song',
+        contentTypes: contentTypes
       };
     }
   } catch (e) {
@@ -230,11 +284,90 @@ function handleModalSearchChange(e) {
 function openSearchModal() {
   const query = document.getElementById('searchInput').value.trim();
   const resultFilterInput = document.getElementById('resultFilterInput');
+  
   // Pre-populate the modal search input with main search bar value
   if (resultFilterInput) {
     resultFilterInput.value = query;
   }
+  
+  // Hide filters box by default
+  const filterBox = document.getElementById('filterBox');
+  if (filterBox) {
+    filterBox.style.display = 'none';
+  }
+  
+  // Reset all exclusion checkboxes
+  document.getElementById('excludeAlbums').checked = false;
+  document.getElementById('excludeSongs').checked = false;
+  document.getElementById('excludeTitles').checked = false;
+  document.getElementById('excludeSummary').checked = false;
+  document.getElementById('excludeLyrics').checked = false;
+  document.getElementById('excludeConnections').checked = false;
+  document.getElementById('excludeExtended').checked = false;
+  document.getElementById('excludeMetadata').checked = false;
+  
   performSearch(query);
+}
+
+// Apply filters based on checkboxes
+function applyResultsFilter() {
+  // Get selected content exclusions (checkboxes)
+  const excludedContentTypes = [];
+  
+  // Page type filters (new checkboxes)
+  if (document.getElementById('excludeAlbums') && document.getElementById('excludeAlbums').checked) {
+    excludedContentTypes.push('album');
+  }
+  if (document.getElementById('excludeSongs') && document.getElementById('excludeSongs').checked) {
+    excludedContentTypes.push('song');
+  }
+  
+  // Content type filters
+  if (document.getElementById('excludeTitles') && document.getElementById('excludeTitles').checked) {
+    excludedContentTypes.push('page-titles');
+  }
+  if (document.getElementById('excludeSummary') && document.getElementById('excludeSummary').checked) {
+    excludedContentTypes.push('summary');
+  }
+  if (document.getElementById('excludeLyrics') && document.getElementById('excludeLyrics').checked) {
+    excludedContentTypes.push('lyrics');
+  }
+  if (document.getElementById('excludeConnections') && document.getElementById('excludeConnections').checked) {
+    excludedContentTypes.push('connections');
+  }
+  if (document.getElementById('excludeExtended') && document.getElementById('excludeExtended').checked) {
+    excludedContentTypes.push('extended');
+  }
+  if (document.getElementById('excludeMetadata') && document.getElementById('excludeMetadata').checked) {
+    excludedContentTypes.push('metadata');
+  }
+  
+  // Filter results
+  let filteredResults = fullSearchResults;
+  
+  // Filter by excluded page types
+  if (excludedContentTypes.includes('album') || excludedContentTypes.includes('song')) {
+    filteredResults = filteredResults.filter(result => {
+      return !(
+        (excludedContentTypes.includes('album') && result.pageType === 'album') ||
+        (excludedContentTypes.includes('song') && result.pageType === 'song')
+      );
+    });
+  }
+  
+  // Filter by excluded content types
+  const contentExclusions = excludedContentTypes.filter(type => 
+    !['album', 'song'].includes(type)
+  );
+  
+  if (contentExclusions.length > 0) {
+    filteredResults = filteredResults.filter(result => {
+      // Keep result only if it has at least one content type that is NOT excluded
+      return result.contentTypes.some(contentType => !contentExclusions.includes(contentType));
+    });
+  }
+  
+  displaySearchResults(filteredResults, currentSearchQuery);
 }
 
 // Close search modal
@@ -255,6 +388,8 @@ function initializeSearch() {
   const modal = document.getElementById('searchModal');
   const searchInput = document.getElementById('searchInput');
   const resultFilterInput = document.getElementById('resultFilterInput');
+  const filtersToggleBtn = document.getElementById('filtersToggleBtn');
+  const filterBox = document.getElementById('filterBox');
   
   if (searchBtn) {
     searchBtn.addEventListener('click', handleSearchClick);
@@ -293,4 +428,31 @@ function initializeSearch() {
       }, 300);
     });
   }
+  
+  // Add event listener for filters toggle button
+  if (filtersToggleBtn && filterBox) {
+    filtersToggleBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      filterBox.style.display = filterBox.style.display === 'none' ? 'block' : 'none';
+    });
+  }
+  
+  // Add event listeners for all filter checkboxes
+  const checkboxes = [
+    'excludeAlbums',
+    'excludeSongs',
+    'excludeTitles',
+    'excludeSummary',
+    'excludeLyrics',
+    'excludeConnections',
+    'excludeExtended',
+    'excludeMetadata'
+  ];
+  
+  checkboxes.forEach(checkboxId => {
+    const checkbox = document.getElementById(checkboxId);
+    if (checkbox) {
+      checkbox.addEventListener('change', applyResultsFilter);
+    }
+  });
 }
