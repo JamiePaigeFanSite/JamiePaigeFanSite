@@ -173,13 +173,7 @@ async function performSearch(query) {
 function displaySearchResults(results, originalQuery) {
   const resultsContainer = document.getElementById('searchResults');
   const searchTitle = document.getElementById('searchTitle');
-  const resultFilterInput = document.getElementById('resultFilterInput');
   const basePath = window.location.pathname.includes('/JamiePedia/') ? '/JamiePedia' : '';
-  
-  // Pre-populate the search input with current query
-  if (resultFilterInput) {
-    resultFilterInput.value = originalQuery;
-  }
   
   // Escape special regex characters
   const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -235,6 +229,11 @@ function handleModalSearchChange(e) {
 // Open search modal
 function openSearchModal() {
   const query = document.getElementById('searchInput').value.trim();
+  const resultFilterInput = document.getElementById('resultFilterInput');
+  // Pre-populate the modal search input with main search bar value
+  if (resultFilterInput) {
+    resultFilterInput.value = query;
+  }
   performSearch(query);
 }
 
