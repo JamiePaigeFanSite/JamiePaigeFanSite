@@ -106,21 +106,114 @@
         ×
       </button>
     </div>
-    <input 
-      type="text" 
-      id="resultFilterInput" 
-      placeholder="Search..."
-      style="
-        width: 100%;
-        padding: 8px 12px;
-        border: 2px solid #351854;
-        border-radius: 3px;
-        font-family: 'Nunito', sans-serif;
-        margin-bottom: 15px;
-        box-sizing: border-box;
-        flex-shrink: 0;
-      "
-    >
+    <div style="
+      margin-bottom: 15px;
+      flex-shrink: 0;
+    ">
+      <div style="
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+        align-items: center;
+      ">
+        <input 
+          type="text" 
+          id="resultFilterInput" 
+          placeholder="Search..."
+          style="
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid #351854;
+            border-radius: 3px;
+            font-family: 'Nunito', sans-serif;
+            box-sizing: border-box;
+          "
+        >
+        <button 
+          id="filtersToggleBtn"
+          onmouseover="this.style.color='#68BDE7'"
+          onmouseout="this.style.color='#ef8a85'"
+          style="
+            padding: 2px 15px;
+            background-color: #FFFFFF;
+            color: #ef8a85;
+            border: 2px solid #351854;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            white-space: nowrap;
+            height: 36px;
+            box-sizing: border-box;
+            font-weight: bold;
+          "
+        >
+          Filters
+        </button>
+      </div>
+
+      <!-- Filters Box (Hidden by default) -->
+      <div 
+        id="filterBox"
+        style="
+          display: none;
+          border: 2px solid #351854;
+          border-radius: 5px;
+          padding: 12px;
+          background-color: #fafaf8;
+          margin-bottom: 10px;
+        "
+      >
+        <div style="
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-bottom: 10px;
+          font-size: 13px;
+        ">
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeAlbums" style="margin-right: 4px;">
+            Exclude Albums
+          </label>
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeSongs" style="margin-right: 4px;">
+            Exclude Songs
+          </label>
+        </div>
+
+        <div style="
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          font-size: 13px;
+          opacity: 0.8;
+        ">
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeTitles" style="margin-right: 4px;">
+            Exclude Titles
+          </label>
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeSummary" style="margin-right: 4px;">
+            Exclude Summary
+          </label>
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeLyrics" style="margin-right: 4px;">
+            Exclude Lyrics
+          </label>
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeConnections" style="margin-right: 4px;">
+            Exclude Connections
+          </label>
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeExtended" style="margin-right: 4px;">
+            Exclude Extended
+          </label>
+          <label style="cursor: pointer; user-select: none;">
+            <input type="checkbox" id="excludeMetadata" style="margin-right: 4px;">
+            Exclude Metadata
+          </label>
+        </div>
+      </div>
+    </div>
     <div 
       id="searchResults" 
       style="

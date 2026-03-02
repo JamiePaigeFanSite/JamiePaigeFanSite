@@ -77,66 +77,13 @@
         const pathname = window.location.pathname;
         const basePath = pathname.includes('/JamiePedia/') ? '/JamiePedia' : '';
         
-        const songs = [
-          basePath + '/music/aa/decree.html',
-          basePath + '/music/aa/space-center.html',
-          basePath + '/music/aa/skygirl.html',
-          basePath + '/music/aa/imaginary-effervescent.html',
-          basePath + '/music/aa/adelaide-delays.html',
-          basePath + '/music/aa/song-for-jijo.html',
-          basePath + '/music/aa/grand-restore.html',
-          basePath + '/music/aa/space-center-pt-2.html',
-          basePath + '/music/aa/good-time-lead-line.html',
-          basePath + '/music/aed/automated-answering-service.html',
-          basePath + '/music/aed/a-repetition.html',
-          basePath + '/music/aed/to-atlantis.html',
-          basePath + '/music/aed/its-2013-again.html',
-          basePath + '/music/aed/too-much-autotune.html',
-          basePath + '/music/aed/special-days.html',
-          basePath + '/music/aed/amelie.html',
-          basePath + '/music/aed/secret-girlfriend.html',
-          basePath + '/music/aed/bizarre-love-triangle.html',
-          basePath + '/music/aed/pass.html',
-          basePath + '/music/aed/honor-majesty.html',
-          basePath + '/music/aed/autumn-every-day.html',
-          basePath + '/music/aed/hold-me-tightly.html',
-          basePath + '/music/bs/second-hello.html',
-          basePath + '/music/bs/gentle-heart.html',
-          basePath + '/music/bs/asemic-speech.html',
-          basePath + '/music/bs/nothing-with-you.html',
-          basePath + '/music/bs/paisley-patterns.html',
-          basePath + '/music/bs/gummyworm.html',
-          basePath + '/music/bs/greatsword-love-as-fire.html',
-          basePath + '/music/bs/ally.html',
-          basePath + '/music/bs/ballroom.html',
-          basePath + '/music/bs/bittersweet.html',
-          basePath + '/music/bs/close.html',
-          basePath + '/music/bs/fiction.html',
-          basePath + '/music/cc/dyad.html',
-          basePath + '/music/cc/not-quite-there.html',
-          basePath + '/music/cc/rot-for-clout.html',
-          basePath + '/music/cc/i-wish-that-i-could-fall.html',
-          basePath + '/music/cc/cadmium-colors.html',
-          basePath + '/music/cc/breeze-blows.html',
-          basePath + '/music/cc/aggrandicize.html',
-          basePath + '/music/cc/liaison.html',
-          basePath + '/music/cc/object-of-affection.html',
-          basePath + '/music/cc/clouddrop.html',
-          basePath + '/music/cc/my-darling-my-companion.html',
-          basePath + '/music/cc/machine-love.html',
-          basePath + '/music/cc/birdbrain.html',
-          basePath + '/music/cc/shiny-chariot.html',
-          basePath + '/music/cc/strawberry.html',
-          basePath + '/music/cc/manifesto.html',
-          basePath + '/music/cc/dance-delightful.html',
-          basePath + '/music/cs/papergirl.html',
-          basePath + '/music/cs/little-anger.html',
-          basePath + '/music/cs/ringtone.html',
-          basePath + '/music/cs/one-small-moment-of-silence.html',
-          basePath + '/music/cs/some-more-of-that-song.html'
-        ];
-        const randomSong = songs[Math.floor(Math.random() * songs.length)];
-        window.location.href = randomSong;
+        if (!musicFilePaths || musicFilePaths.length === 0) {
+          console.error('No music files found in musicFilePaths');
+          return;
+        }
+        
+        const randomEntry = musicFilePaths[Math.floor(Math.random() * musicFilePaths.length)];
+        window.location.href = basePath + randomEntry.path;
       }
     </script>
   </body>
